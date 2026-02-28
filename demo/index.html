@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08111f">
+  <title>Airfoil method hierarchy</title>
+  <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <p class="eyebrow">NACA 0012 · M 0.15 · Re 5.97M</p>
+        <h1>Model complexity does not <span>guarantee accuracy.</span></h1>
+      </div>
+      <output id="angle">α +4.0°</output>
+    </header>
+    <section class="controls">
+      <span>Angle of attack</span>
+      <input id="alpha" type="range" min="0" max="44" value="16" aria-label="Angle of attack">
+      <div class="legend"><i class="nasa"></i>NASA <i class="panel"></i>Panel <i class="thin"></i>Thin</div>
+    </section>
+    <figure>
+      <figcaption><span>Surface pressure</span><small>Hess–Smith + Prandtl–Glauert</small></figcaption>
+      <canvas id="surface" width="1100" height="280"></canvas>
+    </figure>
+    <figure>
+      <figcaption><span>Lift hierarchy</span><small>Measured stall exposes the inviscid limit</small></figcaption>
+      <canvas id="lift" width="1100" height="430"></canvas>
+    </figure>
+    <footer>
+      <div><span>Panel C<sub>l</sub></span><strong id="panel-cl">—</strong></div>
+      <div><span>Nearest NASA C<sub>l</sub></span><strong id="nasa-cl">—</strong></div>
+      <div><span>Regime</span><strong id="regime">Linear validation</strong></div>
+    </footer>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

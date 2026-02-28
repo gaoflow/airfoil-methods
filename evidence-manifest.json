@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "slug": "airfoil-methods",
+  "title": "Airfoil method hierarchy validation",
+  "summary": "Analytical and Hess–Smith predictions are checked against one traceable NASA NACA 0012 series, with inviscid blind spots kept visible.",
+  "methods": [
+    "Thin-airfoil theory and Prandtl–Glauert correction at Mach 0.15.",
+    "Cosine-spaced Hess–Smith source/vortex panels with a Kutta condition.",
+    "Linear-range comparison and 40/80/160/240-panel refinement."
+  ],
+  "limitations": [
+    "One symmetric airfoil, Reynolds number, Mach number, and transition condition.",
+    "Potential flow cannot predict boundary layers, viscous drag, separation, or stall.",
+    "The validation range is explicitly limited to -4.1 through 10.2 degrees."
+  ],
+  "reproducibility": {
+    "commands": [
+      "cd projects/airfoil-methods && python3 -m unittest discover -s tests -v",
+      "cd projects/airfoil-methods && python3 scripts/analyse.py",
+      "cd projects/airfoil-methods && python3 scripts/build_demo.py"
+    ]
+  },
+  "sources": [
+    {
+      "id": "nasa-tm-4074",
+      "title": "Ladson (1988), NASA TM-4074",
+      "url": "https://ntrs.nasa.gov/citations/19880019495",
+      "role": "wind-tunnel validation data"
+    },
+    {
+      "id": "solver",
+      "title": "Airfoil method implementation",
+      "artifact": "src/airfoil_methods.py",
+      "role": "generated prediction"
+    },
+    {
+      "id": "analysis",
+      "title": "Airfoil validation runner",
+      "artifact": "scripts/analyse.py",
+      "role": "acceptance evaluation"
+    }
+  ],
+  "claims": [
+    {
+      "id": "linear-lift-rmse",
+      "statement": "Panel-model lift RMSE remains below 0.1 inside the declared linear range.",
+      "metric": {"path": "results/analysis.json", "pointer": "/linearLift/hessSmithRmse", "display": ".4f"},
+      "expectation": {"operator": "<=", "value": 0.1},
+      "artifacts": ["results/analysis.json", "results/lift-validation.svg"],
+      "sourceIds": ["nasa-tm-4074", "solver", "analysis"]
+    },
+    {
+      "id": "linear-lift-slope",
+      "statement": "Panel-model lift slope is within 15% of the measured linear slope.",
+      "metric": {"path": "results/analysis.json", "pointer": "/linearLift/hessSmithSlopeRelativeError", "display": ".2%"},
+      "expectation": {"operator": "<=", "value": 0.15},
+      "artifacts": ["results/analysis.json", "results/lift-validation.svg"],
+      "sourceIds": ["nasa-tm-4074", "solver", "analysis"]
+    },
+    {
+      "id": "panel-refinement",
+      "statement": "The 160-to-240-panel lift change at four degrees is below 1%.",
+      "metric": {"path": "results/analysis.json", "pointer": "/panelRefinementAtFourDegrees/relativeChange160To240", "display": ".3%"},
+      "expectation": {"operator": "<=", "value": 0.01},
+      "artifacts": ["results/analysis.json", "results/pressure-and-refinement.svg"],
+      "sourceIds": ["solver", "analysis"]
+    },
+    {
+      "id": "drag-blind-spot",
+      "statement": "The acceptance record explicitly retains the inviscid drag blind spot.",
+      "metric": {"path": "results/analysis.json", "pointer": "/acceptance/inviscidDragBlindSpotIsExplicit"},
+      "expectation": {"operator": "==", "value": true},
+      "artifacts": ["results/analysis.json", "results/drag-blind-spot.svg"],
+      "sourceIds": ["nasa-tm-4074", "solver", "analysis"]
+    }
+  ]
+}

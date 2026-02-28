@@ -1,0 +1,70 @@
+{
+  "project": "Airfoil Methods",
+  "generatedAt": "2026-08-23T16:31:37Z",
+  "reference": {
+    "report": "NASA TM-4074, Charles L. Ladson, 1988",
+    "url": "https://ntrs.nasa.gov/citations/19880019495",
+    "table": "Table I, free transition",
+    "airfoil": "NACA 0012",
+    "mach": 0.15,
+    "reynolds": 5970000.0,
+    "measurementCount": 16,
+    "linearRangeDegrees": [
+      -4.1,
+      10.2
+    ]
+  },
+  "geometry": {
+    "panels": 160,
+    "maximumThicknessRatio": 0.11997814468608281
+  },
+  "linearLift": {
+    "nasaSlopePerDegree": 0.10684334212019697,
+    "nasaZeroLiftDegrees": -0.0076734415240226166,
+    "hessSmithSlopePerDegree": 0.1216177273974319,
+    "hessSmithZeroLiftDegrees": 0.0013126775744018847,
+    "thinAirfoilSlopePerDegree": 0.11091718856462622,
+    "hessSmithRmse": 0.08235000596158368,
+    "thinAirfoilRmse": 0.02257902011345633,
+    "hessSmithSlopeRelativeError": 0.13828082296989544
+  },
+  "outsideLinearRange": {
+    "hessSmithFullRangeLiftRmse": 0.22491432744984752,
+    "measuredPeakLift": 1.66,
+    "measuredPeakLiftAlphaDegrees": 17.35,
+    "modelLiftAtMeasuredPeakAlpha": 2.084895851923257,
+    "maximumModelPressureDrag": 0.0007857294535188464,
+    "interpretation": "Inviscid models remain nearly linear and cannot predict viscous drag or stall."
+  },
+  "panelRefinementAtFourDegrees": {
+    "panelCounts": [
+      40,
+      80,
+      160,
+      240
+    ],
+    "liftCoefficients": [
+      0.4864561258227428,
+      0.48726988456014325,
+      0.4877294474476617,
+      0.48787930443798827
+    ],
+    "pressureDragCoefficients": [
+      0.0014944052531101482,
+      0.0005198269079329174,
+      0.00020642355807463236,
+      0.0001265703967242432
+    ],
+    "relativeChange160To240": 0.00030715996551477885
+  },
+  "performance": {
+    "analysisSeconds": 1.025995166040957
+  },
+  "acceptance": {
+    "geometryWithinTwoTenthsPercentThickness": true,
+    "linearLiftRmseBelowPointOne": true,
+    "linearSlopeWithinFifteenPercent": true,
+    "refinementChangeBelowOnePercent": true,
+    "inviscidDragBlindSpotIsExplicit": true
+  }
+}

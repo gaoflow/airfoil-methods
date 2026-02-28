@@ -1,0 +1,6 @@
+[project]
+name = "airfoil-methods"
+version = "0.1.0"
+description = "Analytical and panel-method hierarchy validated against NASA NACA 0012 measurements"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "matplotlib>=3.9"]
