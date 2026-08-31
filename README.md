@@ -37,3 +37,9 @@ The simplest thin-airfoil result is closer to the measured integral lift slope t
 - `tests/` — geometry, symmetry, lift-slope, d'Alembert, and panel-refinement contracts.
 - `scripts/analyse.py` — validation, acceptance gates, and evidence generation.
 - `results/` — committed machine-readable metrics and figures.
+
+---
+
+## Portfolio case study
+
+Read the [full engineering case study](https://binggao.dev/projects/airfoil-methods/).
